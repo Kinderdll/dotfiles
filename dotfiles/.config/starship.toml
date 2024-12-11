@@ -1,0 +1,109 @@
+# Inserts a blank line between shell prompts
+
+#[╭{ehms} ](bold green)$username$directory$battery$all$line_break$character"""
+
+
+"$schema" = 'https://starship.rs/config-schema.json'
+add_newline = false
+format = """
+[╭$username ](bold green)$directory$battery$all$line_break$character"""
+
+right_format = """$git_branch$git_state$git_status$time$cmd_duration"""
+
+[character]
+success_symbol = '[╰─>](bold green)'
+error_symbol = '[╰─>](bold red)'
+vicmd_symbol = "[V](bold green)"
+
+[cmd_duration]
+style = "bold #f1fa8c"
+disabled=false
+min_time=500
+
+[directory]
+#format = "[](fg:#a3ca5c bg:none)[$path]($style)[ ](fg:#a3ca5c bg:none)"
+#style = "fg:#000000 bg:#a3ca5c"
+truncate_to_repo=false
+style = "bold #50fa7b"
+truncation_length = 8
+truncation_symbol = "../"
+
+
+
+[git_commit]
+commit_hash_length = 4
+tag_symbol = '🔖 '
+
+[git_branch]
+symbol = '🌱 '
+truncation_length = 4
+truncation_symbol = ''
+ignore_branches = ['master', 'main']
+style = "bold #ff79c6"
+
+[git_status]
+conflicted = '🏳'
+ahead = '🏎💨'
+behind = '😰'
+diverged = '😵'
+up_to_date = '✓'
+untracked = '🤷'
+stashed = '📦'
+modified = '📝'
+staged = '[++\($count\)](green)'
+renamed = '👅'
+deleted = '🗑'
+
+[hostname]
+style = "bold #bd93f9"
+#ssh_only = false
+#format = '[$ssh_symbol](bold blue) on [$hostname](bold red) '
+#trim_at = '.companyname.com'
+disabled = false
+[username]
+format = "[$user]($style) on "
+style_user = "bold #8be9fd"
+show_always=true
+
+[package]
+disabled = false
+
+[python]
+disabled = true
+
+[time]
+#time_format = '%T'
+disabled = false
+
+
+[aws]
+style = "bold #ffb86c"
+format = 'on [$symbol($profile )(\($region\) )]($style)'
+symbol = '☁️ '
+disabled = false
+
+[kubernetes]
+disabled = false
+symbol = "⎈"
+format = '\[[$symbol $context(\($namespace\))]($style)\]'
+
+[[kubernetes.contexts]]
+context_pattern = "^production$"
+context_alias = "production"
+style = "green"
+#symbol = "⎈"
+#format = '[$symbol](bright-black) [$context( \($namespace\))]($style)'
+
+[env_var.KUBECONFIG]
+default = ''
+style = 'dimmed green'
+format = "\n$env_value ($style)"
+#disabled = false
+# ~/.config/starship.toml
+
+[docker_context]
+format = 'via [🐋 $context](blue bold)'
+
+[container]
+format = '[$symbol \[$name\]]($style) '
+disabled = false
